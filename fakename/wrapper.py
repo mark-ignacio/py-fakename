@@ -31,6 +31,8 @@ class PageParser(HTMLParser):
         self.in_td = False
         self.tr_key = None
         self.tr_value = None
+        self.in_anchor = False
+        self.anchor_href = None
         self.identity = {}
 
     # essentially, we're waiting until we reach the table body to scrape data
@@ -39,6 +41,9 @@ class PageParser(HTMLParser):
             self.in_tr = True
         elif tag == 'td':
             self.in_td = True
+        elif tag == 'a':
+            self.in_anchor = True
+            self.anchor_href = dict(attrs)['href']
 
     def handle_data(self, data):
         # handle_data will only be called once per textNode since we receive the entire page beforehand
@@ -47,6 +52,8 @@ class PageParser(HTMLParser):
                 self.tr_key = data.strip()
             elif self.tr_key and self.tr_value is None:
                 self.tr_value = data.strip()
+        elif self.in_anchor and data.strip() == 'Permalink for this profile':
+            self.identity['permalink'] = urljoin(DOMAIN, self.anchor_href)
 
     def handle_endtag(self, tag):
         if tag == 'td':
@@ -57,6 +64,9 @@ class PageParser(HTMLParser):
                 self.identity[self.tr_key] = self.tr_value
                 self.tr_key = None
                 self.tr_value = None
+        elif tag == 'a':
+            self.in_anchor = False
+            self.anchor_href = None
 
 
 PARSER = PageParser()
@@ -95,6 +105,7 @@ def gen_identity(processed=True):
         'username': ugly['Username:'],
         'password': ugly['Password:'],
         'temp_email': ugly['Temporary Email Address:'],
+        'permalink': ugly['permalink']
     }
 
     return identity

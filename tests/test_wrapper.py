@@ -19,7 +19,8 @@ class CourtesyTests(unittest.TestCase):
 
 
 class IdentityTests(unittest.TestCase):
-    IDENTITY_KEYS = {'name', 'dob', 'address', 'city', 'state', 'zip', 'phone', 'username', 'password', 'temp_email'}
+    IDENTITY_KEYS = {'name', 'dob', 'address', 'city', 'state', 'zip', 'phone',
+                     'username', 'password', 'temp_email', 'permalink'}
 
     def test_return_format(self):
         """
