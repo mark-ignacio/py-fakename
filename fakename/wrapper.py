@@ -1,10 +1,10 @@
 from datetime import datetime
 
+import requests
+
 # noinspection PyUnresolvedReferences
 from fakename.six.moves.html_parser import HTMLParser
 
-# noinspection PyUnresolvedReferences
-from fakename.six.moves.urllib import request
 # noinspection PyUnresolvedReferences
 from fakename.six.moves.urllib.parse import urljoin
 from fakename.six import PY3, PY2
@@ -16,8 +16,8 @@ DOMAIN = 'https://fakena.me/'
 # construct a whole bunch of other urls
 RANDOM_URL = urljoin(DOMAIN, 'random/')
 
-opener = request.build_opener()
-opener.addheaders = [('User-Agent', 'py-fakename-' + __version__)]
+session = requests.Session()
+session.headers['User-Agent'] = 'py-fakename-' + __version__
 
 
 # noinspection PyAttributeOutsideInit
@@ -85,9 +85,7 @@ def gen_identity(process=True):
     :param process: whether to process results at all
     :return: dictionary containing an identity
     """
-    page = opener.open(RANDOM_URL).read()
-    if PY3:
-        page = page.decode('utf8')
+    page = session.get(RANDOM_URL, verify=True).text
 
     PARSER.reset()
     PARSER.feed(page)

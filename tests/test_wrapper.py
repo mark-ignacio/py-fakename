@@ -9,13 +9,7 @@ class CourtesyTests(unittest.TestCase):
         """
         User-agent starts with py-fakename-
         """
-        user_agent = False
-        for header, value in wrapper.opener.addheaders:
-            if header == 'User-Agent':
-                user_agent = (value.startswith('py-fakename-'))
-                break
-
-        self.assertTrue(user_agent)
+        self.assertEqual(wrapper.session.headers['User-Agent'], 'py-fakename-' + fakename.__version__)
 
 
 class IdentityTests(unittest.TestCase):
