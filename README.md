@@ -8,7 +8,7 @@ Python 3.4, so your compatibility mileage may vary.
 Requirements
 ------------
 
-* Tested on Python 2.7 or Python 3.4
+* Tested on Python 2.7 and Python 3.4
 * The [requests](https://github.com/kennethreitz/requests) library
 
 Installation
