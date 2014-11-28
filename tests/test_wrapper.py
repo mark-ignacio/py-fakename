@@ -22,7 +22,20 @@ class IdentityTests(unittest.TestCase):
     IDENTITY_KEYS = {'name', 'dob', 'address', 'city', 'state', 'zip', 'phone', 'username', 'password', 'temp_email'}
 
     def test_return_format(self):
+        """
+        Asserts that the identity dict matches the declared format
+        """
         identity = fakename.gen_identity()
 
         for key in self.IDENTITY_KEYS:
             self.assertTrue(identity[key])
+
+    def test_parser_state_clears(self):
+        """
+        Makes sure that our PageParser class clears state between function calls
+        """
+        id1 = fakename.gen_identity()
+        id2 = fakename.gen_identity()
+
+        for key in self.IDENTITY_KEYS:
+            self.assertNotEqual(id1[key], id2[key])
