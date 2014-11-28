@@ -5,13 +5,25 @@ py-fakename is a simple little package that gets identities generated from [http
 There are no additional dependencies past an installation of Python. py-fakename has only been tested on Python 2.7 and
 Python 3.4, so your compatibility mileage may vary.
 
-Installation:
+Requirements
+------------
+
+* Tested on Python 2.7 or Python 3.4
+* The [requests](https://github.com/kennethreitz/requests) library
+
+Installation
+------------
+
+To install py-fakename, run:
     
 ```bash
-pip install py-fakename
+$ pip install py-fakename
 ```
 
-Usage (reordered for clarity):
+Usage
+-----
+
+Return value reordered for clarity:
 
 ```python
 >>> from pprint import pprint
