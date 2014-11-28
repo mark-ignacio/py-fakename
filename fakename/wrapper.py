@@ -26,7 +26,8 @@ class PageParser(HTMLParser):
         if six.PY3:
             super().reset()
         else:
-            super(PageParser).reset(self)
+            # old style invocation for an old style class
+            HTMLParser.reset(self)
         self.in_tr = False
         self.in_td = False
         self.tr_key = None
