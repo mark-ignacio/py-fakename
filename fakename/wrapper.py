@@ -7,6 +7,7 @@ from six.moves.urllib import request
 from six.moves.urllib.parse import urljoin
 import six
 import datetime
+import os.path
 
 DOMAIN = 'https://fakena.me/'
 
@@ -14,7 +15,7 @@ DOMAIN = 'https://fakena.me/'
 RANDOM_URL = urljoin(DOMAIN, 'random/')
 
 opener = request.build_opener()
-opener.addheaders = [('User-Agent', 'py-fakename-' + open('../VERSION').read().strip())]
+opener.addheaders = [('User-Agent', 'py-fakename-' + open(os.path.join(os.path.dirname(__file__), '../VERSION')).read().strip())]
 
 
 # noinspection PyAttributeOutsideInit
@@ -93,7 +94,7 @@ def gen_identity(processed=True):
         'phone': ugly['Phone Number:'],
         'username': ugly['Username:'],
         'password': ugly['Password:'],
-        'temp_email': ugly['Temporary Email Address:']
+        'temp_email': ugly['Temporary Email Address:'],
     }
 
     return identity
