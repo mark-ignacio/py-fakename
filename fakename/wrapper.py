@@ -7,7 +7,7 @@ from six.moves.urllib import request
 from six.moves.urllib.parse import urljoin
 import six
 import datetime
-import os.path
+from fakename import __version__
 
 DOMAIN = 'https://fakena.me/'
 
@@ -15,7 +15,7 @@ DOMAIN = 'https://fakena.me/'
 RANDOM_URL = urljoin(DOMAIN, 'random/')
 
 opener = request.build_opener()
-opener.addheaders = [('User-Agent', 'py-fakename-' + open(os.path.join(os.path.dirname(__file__), '../VERSION')).read().strip())]
+opener.addheaders = [('User-Agent', 'py-fakename-' + __version__)]
 
 
 # noinspection PyAttributeOutsideInit
