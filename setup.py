@@ -9,6 +9,7 @@ setup(
     author='Mark Ignacio',
     author_email='mark@ignacio.io',
     description='Wrapper for fakena.me generation',
+    url='https://github.com/mark-ignacio/py-fakename',
     license='GPL',
     packages=find_packages(),
     install_requires=['requests'],
