@@ -1,12 +1,14 @@
-# noinspection PyUnresolvedReferences
-from six.moves.html_parser import HTMLParser
+from datetime import datetime
 
 # noinspection PyUnresolvedReferences
-from six.moves.urllib import request
+from fakename.six.moves.html_parser import HTMLParser
+
 # noinspection PyUnresolvedReferences
-from six.moves.urllib.parse import urljoin
-import six
-import datetime
+from fakename.six.moves.urllib import request
+# noinspection PyUnresolvedReferences
+from fakename.six.moves.urllib.parse import urljoin
+from fakename.six import PY3, PY2
+
 from fakename import __version__
 
 DOMAIN = 'https://fakena.me/'
@@ -23,9 +25,9 @@ class PageParser(HTMLParser):
     # whole lotta' state
     # noinspection PyCompatibility,PyArgumentList
     def reset(self):
-        if six.PY3:
+        if PY3:
             super().reset()
-        else:
+        elif PY2:
             # old style invocation for an old style class
             HTMLParser.reset(self)
         self.in_tr = False
@@ -73,9 +75,18 @@ class PageParser(HTMLParser):
 PARSER = PageParser()
 
 
-def gen_identity(processed=True):
+def gen_identity(process=True):
+    """
+    Gets an identity generated from https://fakena.me
+
+    The `process` argument decides whether to do any post-processing on parsed out results at all; this is intended for
+    debugging and developmental use only.
+
+    :param process: whether to process results at all
+    :return: dictionary containing an identity
+    """
     page = opener.open(RANDOM_URL).read()
-    if six.PY3:
+    if PY3:
         page = page.decode('utf8')
 
     PARSER.reset()
@@ -84,7 +95,7 @@ def gen_identity(processed=True):
     ugly = PARSER.identity
 
     # no processing whatsoever - even includes the colons!
-    if not processed:
+    if not process:
         return ugly
 
     # make it pythonic and parse it out a bit for normal wrapper output
@@ -93,7 +104,7 @@ def gen_identity(processed=True):
     # sample: "Malone, KY 41451"
     city, state, zip_code = ugly['City, State, ZIP:'].split(' ', 2)
     city = city.rstrip(',')
-    dob = datetime.datetime.strptime(ugly['Date of Birth:'], '%Y-%m-%d')
+    dob = datetime.strptime(ugly['Date of Birth:'], '%Y-%m-%d').date()
 
     identity = {
         'name': ugly['Name:'],
