@@ -6,6 +6,5 @@ python:
   - "3.3"
   - "3.4"
 install:
-  - "pip install py-fakename"
-script: coverage run --source=tortilla test_tortilla.py
-after_success: coveralls
+  - "pip install ."
+script: nosetests
