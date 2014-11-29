@@ -32,5 +32,9 @@ class IdentityTests(unittest.TestCase):
         id1 = fakename.gen_identity()
         id2 = fakename.gen_identity()
 
+        # the two identities should not be exactly equal
+        all_equal = True
         for key in self.IDENTITY_KEYS:
-            self.assertNotEqual(id1[key], id2[key])
+            all_equal = all_equal and (id1[key] == id2[key])
+
+        self.assertFalse(all_equal)
