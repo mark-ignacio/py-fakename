@@ -1,5 +1,7 @@
 py-fakename
 ===========
+![](https://travis-ci.org/mark-ignacio/py-fakename.svg?branch=master)
+
 py-fakename is a simple little package that gets identities generated from [https://fakena.me](https://fakena.me). 
 
 There are no additional dependencies past an installation of Python. py-fakename has only been tested on Python 2.7 and
@@ -8,7 +10,7 @@ Python 3.4, so your compatibility mileage may vary.
 Requirements
 ------------
 
-* Python 2.7, 3.3, or 3.4
+* Python 2.7, 3.2 - 3.4
 * The [requests](https://github.com/kennethreitz/requests) library
 
 Installation
