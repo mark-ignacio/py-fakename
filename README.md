@@ -4,9 +4,6 @@ py-fakename
 
 py-fakename is a simple little package that gets identities generated from [https://fakena.me](https://fakena.me). 
 
-There are no additional dependencies past an installation of Python. py-fakename has only been tested on Python 2.7 and
-Python 3.4, so your compatibility mileage may vary.
-
 Requirements
 ------------
 
