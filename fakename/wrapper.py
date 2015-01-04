@@ -87,6 +87,10 @@ def gen_identity(process=True):
     """
     page = session.get(RANDOM_URL, verify=True).text
 
+    # python 3.2 workaround
+    page = page.replace('<a href=\\"https://twitter.com/fakena_me\\">', '<a href="https://twitter.com/fakena_me">')
+    page = page.replace('<a href=\\"bitcoin:17LfTRzWG6xF9nmErRLG3gtQk1vH3u3jBq\\">', '<a href="bitcoin:17LfTRzWG6xF9nmErRLG3gtQk1vH3u3jBq">')
+
     PARSER.reset()
     PARSER.feed(page)
 
