@@ -7,7 +7,7 @@ py-fakename is a simple little package that gets identities generated from [http
 Requirements
 ------------
 
-* Python 2.7, 3.2 - 3.4
+* Python 2.7, 3
 * The [requests](https://github.com/kennethreitz/requests) library
 
 Installation
