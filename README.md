@@ -1,13 +1,13 @@
 py-fakename
 ===========
-![](https://travis-ci.org/mark-ignacio/py-fakename.svg?branch=master)
+[![Build Status](https://travis-ci.org/mark-ignacio/py-fakename.svg?branch=master)](https://travis-ci.org/mark-ignacio/py-fakename)
 
 py-fakename is a simple little package that gets identities generated from [https://fakena.me](https://fakena.me). 
 
 Requirements
 ------------
 
-* Python 2.7, 3
+* Python 2.7, 3.3+
 * The [requests](https://github.com/kennethreitz/requests) library
 
 Installation
